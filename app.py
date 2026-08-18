@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-
 # 手机微信适配配置，隐藏侧边栏
 st.set_page_config(
     page_title="本命能量T测试",
@@ -8,7 +7,6 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="collapsed"
 )
-
 hide_streamlit_style = """
 <style>
 #MainMenu {visibility: hidden;}
@@ -17,7 +15,6 @@ header {visibility: hidden;}
 </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 # 初始化会话状态
 def init_session():
     if "page" not in st.session_state:
@@ -32,9 +29,7 @@ def init_session():
         st.session_state.current_q = 0
     if "final_gender" not in st.session_state:
         st.session_state.final_gender = None
-
 init_session()
-
 # 5道题目：Q1性别，Q2‑Q5四道能量题
 questions = [
     {
@@ -63,62 +58,54 @@ questions = [
         "type": "energy"
     }
 ]
-
-# ==========货品池，严格对应你实际图片数量==========
+# ==========货品池，严格对应你实际图片数量，全部改为png==========
 goods_pool = [
     # 男生 + 爱意：4张
-    {"sku":"M‑LO‑01","gender":"man","energy_key":"love","img_path":"g01.jpg"},
-    {"sku":"M‑LO‑02","gender":"man","energy_key":"love","img_path":"g02.jpg"},
-    {"sku":"M‑LO‑03","gender":"man","energy_key":"love","img_path":"g03.jpg"},
-    {"sku":"M‑LO‑04","gender":"man","energy_key":"love","img_path":"g04.jpg"},
-
+    {"sku":"M‑LO‑01","gender":"man","energy_key":"love","img_path":"g01.png"},
+    {"sku":"M‑LO‑02","gender":"man","energy_key":"love","img_path":"g02.png"},
+    {"sku":"M‑LO‑03","gender":"man","energy_key":"love","img_path":"g03.png"},
+    {"sku":"M‑LO‑04","gender":"man","energy_key":"love","img_path":"g04.png"},
     # 男生 + 生活：10张
-    {"sku":"M‑LI‑01","gender":"man","energy_key":"life","img_path":"g05.jpg"},
-    {"sku":"M‑LI‑02","gender":"man","energy_key":"life","img_path":"g06.jpg"},
-    {"sku":"M‑LI‑03","gender":"man","energy_key":"life","img_path":"g07.jpg"},
-    {"sku":"M‑LI‑04","gender":"man","energy_key":"life","img_path":"g08.jpg"},
-    {"sku":"M‑LI‑05","gender":"man","energy_key":"life","img_path":"g09.jpg"},
-    {"sku":"M‑LI‑06","gender":"man","energy_key":"life","img_path":"g10.jpg"},
-    {"sku":"M‑LI‑07","gender":"man","energy_key":"life","img_path":"g11.jpg"},
-    {"sku":"M‑LI‑08","gender":"man","energy_key":"life","img_path":"g12.jpg"},
-    {"sku":"M‑LI‑09","gender":"man","energy_key":"life","img_path":"g13.jpg"},
-    {"sku":"M‑LI‑10","gender":"man","energy_key":"life","img_path":"g14.jpg"},
-
+    {"sku":"M‑LI‑01","gender":"man","energy_key":"life","img_path":"g05.png"},
+    {"sku":"M‑LI‑02","gender":"man","energy_key":"life","img_path":"g06.png"},
+    {"sku":"M‑LI‑03","gender":"man","energy_key":"life","img_path":"g07.png"},
+    {"sku":"M‑LI‑04","gender":"man","energy_key":"life","img_path":"g08.png"},
+    {"sku":"M‑LI‑05","gender":"man","energy_key":"life","img_path":"g09.png"},
+    {"sku":"M‑LI‑06","gender":"man","energy_key":"life","img_path":"g10.png"},
+    {"sku":"M‑LI‑07","gender":"man","energy_key":"life","img_path":"g11.png"},
+    {"sku":"M‑LI‑08","gender":"man","energy_key":"life","img_path":"g12.png"},
+    {"sku":"M‑LI‑09","gender":"man","energy_key":"life","img_path":"g13.png"},
+    {"sku":"M‑LI‑10","gender":"man","energy_key":"life","img_path":"g14.png"},
     # 男生 + 运动：2张
-    {"sku":"M‑SP‑01","gender":"man","energy_key":"sport","img_path":"g15.jpg"},
-    {"sku":"M‑SP‑02","gender":"man","energy_key":"sport","img_path":"g16.jpg"},
-
+    {"sku":"M‑SP‑01","gender":"man","energy_key":"sport","img_path":"g15.png"},
+    {"sku":"M‑SP‑02","gender":"man","energy_key":"sport","img_path":"g16.png"},
     # 女生 + 爱意：9张
-    {"sku":"W‑LO‑01","gender":"woman","energy_key":"love","img_path":"g17.jpg"},
-    {"sku":"W‑LO‑02","gender":"woman","energy_key":"love","img_path":"g18.jpg"},
-    {"sku":"W‑LO‑03","gender":"woman","energy_key":"love","img_path":"g19.jpg"},
-    {"sku":"W‑LO‑04","gender":"woman","energy_key":"love","img_path":"g20.jpg"},
-    {"sku":"W‑LO‑05","gender":"woman","energy_key":"love","img_path":"g21.jpg"},
-    {"sku":"W‑LO‑06","gender":"woman","energy_key":"love","img_path":"g22.jpg"},
-    {"sku":"W‑LO‑07","gender":"woman","energy_key":"love","img_path":"g23.jpg"},
-    {"sku":"W‑LO‑08","gender":"woman","energy_key":"love","img_path":"g24.jpg"},
-    {"sku":"W‑LO‑09","gender":"woman","energy_key":"love","img_path":"g25.jpg"},
-
+    {"sku":"W‑LO‑01","gender":"woman","energy_key":"love","img_path":"g17.png"},
+    {"sku":"W‑LO‑02","gender":"woman","energy_key":"love","img_path":"g18.png"},
+    {"sku":"W‑LO‑03","gender":"woman","energy_key":"love","img_path":"g19.png"},
+    {"sku":"W‑LO‑04","gender":"woman","energy_key":"love","img_path":"g20.png"},
+    {"sku":"W‑LO‑05","gender":"woman","energy_key":"love","img_path":"g21.png"},
+    {"sku":"W‑LO‑06","gender":"woman","energy_key":"love","img_path":"g22.png"},
+    {"sku":"W‑LO‑07","gender":"woman","energy_key":"love","img_path":"g23.png"},
+    {"sku":"W‑LO‑08","gender":"woman","energy_key":"love","img_path":"g24.png"},
+    {"sku":"W‑LO‑09","gender":"woman","energy_key":"love","img_path":"g25.png"},
     # 女生 + 生活：7张
-    {"sku":"W‑LI‑01","gender":"woman","energy_key":"life","img_path":"g26.jpg"},
-    {"sku":"W‑LI‑02","gender":"woman","energy_key":"life","img_path":"g27.jpg"},
-    {"sku":"W‑LI‑03","gender":"woman","energy_key":"life","img_path":"g28.jpg"},
-    {"sku":"W‑LI‑04","gender":"woman","energy_key":"life","img_path":"g29.jpg"},
-    {"sku":"W‑LI‑05","gender":"woman","energy_key":"life","img_path":"g30.jpg"},
-    {"sku":"W‑LI‑06","gender":"woman","energy_key":"life","img_path":"g31.jpg"},
-    {"sku":"W‑LI‑07","gender":"woman","energy_key":"life","img_path":"g32.jpg"},
-
+    {"sku":"W‑LI‑01","gender":"woman","energy_key":"life","img_path":"g26.png"},
+    {"sku":"W‑LI‑02","gender":"woman","energy_key":"life","img_path":"g27.png"},
+    {"sku":"W‑LI‑03","gender":"woman","energy_key":"life","img_path":"g28.png"},
+    {"sku":"W‑LI‑04","gender":"woman","energy_key":"life","img_path":"g29.png"},
+    {"sku":"W‑LI‑05","gender":"woman","energy_key":"life","img_path":"g30.png"},
+    {"sku":"W‑LI‑06","gender":"woman","energy_key":"life","img_path":"g31.png"},
+    {"sku":"W‑LI‑07","gender":"woman","energy_key":"life","img_path":"g32.png"},
     # 女生 + 运动：1张
-    {"sku":"W‑SP‑01","gender":"woman","energy_key":"sport","img_path":"g33.jpg"},
+    {"sku":"W‑SP‑01","gender":"woman","energy_key":"sport","img_path":"g33.png"},
 ]
-
 # 3套能量文案
 energy_info = {
     "sport":{"title":"运动能量｜热烈迸发","desc":"向往活力流动，热爱舒展身体，用动感对抗夏日沉闷。","slogan":"热力全开，自在奔赴"},
     "life":{"title":"生活能量｜烟火松弛","desc":"忠于人间烟火，懂得享受日常细碎的欢愉与松弛。","slogan":"烟火日常，自得欢愉"},
     "love":{"title":"爱意能量｜温柔舒展","desc":"内心柔软温暖，既能拥抱阳光热闹，也享受独处平和。","slogan":"心怀暖意，温柔生长"}
 }
-
 # 选项文本映射3种能量key
 def get_energy_key(opt_text):
     if opt_text in ["挥洒运动释放能量","外出动一动流汗","动感鲜活有张力","运动释放掉压力"]:
@@ -128,7 +115,6 @@ def get_energy_key(opt_text):
     elif opt_text in ["陪伴、独处感受温柔","晒太阳或安静度日","柔和温暖松弛治愈","慢下来向内安顿自我"]:
         return "love"
     return None
-
 # 同分随机选能量
 def calc_result():
     score_dict = {
@@ -139,14 +125,12 @@ def calc_result():
     max_score = max(score_dict.values())
     candidates = [k for k,v in score_dict.items() if v == max_score]
     return random.choice(candidates)
-
 # 匹配逻辑：性别 + 能量，在分组内随机抽取一件
 def select_item(gender, energy, goods):
     group = [g for g in goods if g["gender"]==gender and g["energy_key"]==energy]
     if group:
         return random.choice(group)
     return None
-
 # ----------------------封面页 cover----------------------
 if st.session_state.page == "cover":
     st.markdown("""
@@ -160,18 +144,15 @@ if st.session_state.page == "cover":
         if st.button("开始测试",use_container_width=True):
             st.session_state.page = "quiz"
             st.rerun()
-
 # ----------------------答题页 quiz----------------------
 elif st.session_state.page == "quiz":
     idx = st.session_state.current_q
     q_item = questions[idx]
-
     st.markdown(f"""
     <div style="text-align:center; max-width:600px; margin:2rem auto; padding:0 16px;">
         <h2 style="font-size:1.6rem; line-height:1.4;">{q_item['q']}</h2>
     </div>
     """, unsafe_allow_html=True)
-
     for opt in q_item["options"]:
         col1,col2,col3 = st.columns([1,4,1])
         with col2:
@@ -186,29 +167,24 @@ elif st.session_state.page == "quiz":
                         st.session_state.score_life +=1
                     elif ek == "love":
                         st.session_state.score_love +=1
-
                 st.session_state.current_q += 1
                 if st.session_state.current_q >= len(questions):
                     st.session_state.page = "result"
                 st.rerun()
-
 # ----------------------结果页 result----------------------
 elif st.session_state.page == "result":
     final_energy = calc_result()
     final_gender = st.session_state.final_gender
     pick = select_item(final_gender,final_energy,goods_pool)
     info = energy_info[final_energy]
-
-    # --------调试信息，订货会上线注释下面两行----------
-    st.write(f"【调试】分数‑sport/life/love：{st.session_state.score_sport} {st.session_state.score_life} {st.session_state.score_love}")
-    st.write(f"【调试】gender:{final_gender}｜energy:{final_energy}")
-
+    # --------调试信息，订货会上线已经注释----------
+    # st.write(f"【调试】分数‑sport/life/love：{st.session_state.score_sport} {st.session_state.score_life} {st.session_state.score_love}")
+    # st.write(f"【调试】gender:{final_gender}｜energy:{final_energy}")
     st.markdown("""
     <div style="text-align:center; max-width:600px; margin:2rem auto; padding:0 16px;">
         <h1 style="font-size:2.3rem; font-weight:bold;">你的本命能力T</h1>
     </div>
     """,unsafe_allow_html=True)
-
     # T恤图片居中容器，最大宽度360px手机不会撑太大
     st.markdown('<div style="max-width:360px; margin:0 auto;">',unsafe_allow_html=True)
     if pick:
@@ -220,7 +196,6 @@ elif st.session_state.page == "result":
     else:
         st.warning("当前条件下暂无匹配款式")
     st.markdown('</div>',unsafe_allow_html=True)
-
     st.markdown(f"""
     <div style="text-align:center; max-width:520px; margin:1.5rem auto; padding:0 16px;">
         <p style="font-size:1.3rem; font-weight:600;margin:4px 0;">{info['title']}</p>
@@ -228,7 +203,6 @@ elif st.session_state.page == "result":
         <p style="font-size:1.1rem;margin-top:8px;color:#d64848;">✨ {info['slogan']}</p>
     </div>
     """,unsafe_allow_html=True)
-
     # 重新测试按钮，完整清空全部状态
     c1,c2,c3 = st.columns([1,2,1])
     with c2:
