@@ -99,7 +99,6 @@ goods_pool = [
     {"sku":"W‑LI‑07","gender":"woman","energy_key":"life","img_path":"g32.png"},
     # 女生 + 运动：1张
     {"sku":"W‑SP‑01","gender":"woman","energy_key":"sport","img_path":"g33.png"},
-    {"sku":"W‑SP‑02","gender":"woman","energy_key":"sport","img_path":"g34.png"},
 ]
 # 3套能量文案
 energy_info = {
@@ -172,7 +171,7 @@ elif st.session_state.page == "quiz":
                 if st.session_state.current_q >= len(questions):
                     st.session_state.page = "result"
                 st.rerun()
-# ----------------------结果页 result【真正居中：三栏占位法】----------------------
+# ----------------------结果页 result【消除顶部空白，紧凑一屏】----------------------
 elif st.session_state.page == "result":
     final_energy = calc_result()
     final_gender = st.session_state.final_gender
@@ -185,17 +184,16 @@ elif st.session_state.page == "result":
     </div>
     """, unsafe_allow_html=True)
 
-    # ========== 三栏占位实现图片居中，左右1份空白，中间3份放图片 ==========
-    col_left, col_mid, col_right = st.columns([1, 3, 1])
-    with col_mid:
-        if pick:
-            try:
-                st.image(pick["img_path"], width=220)
-            except Exception as e:
-                st.warning(f"图片缺失：{pick['img_path']}")
-        else:
-            st.warning("当前条件下暂无匹配款式")
-
+    # T恤图片容器
+    st.markdown('<div style="max-width:280px; margin:0 auto;">', unsafe_allow_html=True)
+    if pick:
+        try:
+            st.image(pick["img_path"], use_container_width=True)
+        except Exception as e:
+            st.warning(f"图片缺失：{pick['img_path']}")
+    else:
+        st.warning("当前条件下暂无匹配款式")
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown(f"""
     <div style="text-align:center; max-width:520px; margin:0.4rem auto; padding:0 16px;">
@@ -217,5 +215,3 @@ elif st.session_state.page == "result":
             del st.session_state["final_gender"]
             init_session()
             st.rerun()
-
-
