@@ -99,6 +99,7 @@ goods_pool = [
     {"sku":"W‑LI‑07","gender":"woman","energy_key":"life","img_path":"g32.png"},
     # 女生 + 运动：1张
     {"sku":"W‑SP‑01","gender":"woman","energy_key":"sport","img_path":"g33.png"},
+    {"sku":"W‑SP‑02","gender":"woman","energy_key":"sport","img_path":"g34.png"},
 ]
 # 3套能量文案
 energy_info = {
