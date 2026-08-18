@@ -58,7 +58,7 @@ questions = [
         "type": "energy"
     }
 ]
-# ==========货品池，严格对应你实际图片数量，全部改为png==========
+# ==========货品池，全部png格式==========
 goods_pool = [
     # 男生 + 爱意：4张
     {"sku":"M‑LO‑01","gender":"man","energy_key":"love","img_path":"g01.png"},
@@ -177,9 +177,7 @@ elif st.session_state.page == "result":
     final_gender = st.session_state.final_gender
     pick = select_item(final_gender,final_energy,goods_pool)
     info = energy_info[final_energy]
-    # --------调试信息，订货会上线已经注释----------
-    # st.write(f"【调试】分数‑sport/life/love：{st.session_state.score_sport} {st.session_state.score_life} {st.session_state.score_love}")
-    # st.write(f"【调试】gender:{final_gender}｜energy:{final_energy}")
+
     st.markdown("""
     <div style="text-align:center; max-width:600px; margin:2rem auto; padding:0 16px;">
         <h1 style="font-size:2.3rem; font-weight:bold;">你的本命能力T</h1>
@@ -192,10 +190,10 @@ elif st.session_state.page == "result":
             st.image(pick["img_path"], use_container_width=True)
         except Exception as e:
             st.warning(f"图片缺失：{pick['img_path']}")
-        st.markdown(f"<p style='text-align:center;font-size:1.1rem;font-weight:600'>推荐款号：{pick['sku']}</p>",unsafe_allow_html=True)
     else:
         st.warning("当前条件下暂无匹配款式")
     st.markdown('</div>',unsafe_allow_html=True)
+
     st.markdown(f"""
     <div style="text-align:center; max-width:520px; margin:1.5rem auto; padding:0 16px;">
         <p style="font-size:1.3rem; font-weight:600;margin:4px 0;">{info['title']}</p>
