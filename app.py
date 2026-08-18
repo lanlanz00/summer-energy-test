@@ -172,7 +172,7 @@ elif st.session_state.page == "quiz":
                 if st.session_state.current_q >= len(questions):
                     st.session_state.page = "result"
                 st.rerun()
-# ----------------------结果页 result【消除顶部空白，紧凑一屏】----------------------
+# ----------------------结果页 result【图片居中 + 固定尺寸】----------------------
 elif st.session_state.page == "result":
     final_energy = calc_result()
     final_gender = st.session_state.final_gender
@@ -185,18 +185,19 @@ elif st.session_state.page == "result":
     </div>
     """, unsafe_allow_html=True)
 
-        # T恤图片容器
-    st.markdown('<div style="text-align:center;margin:0 auto;">', unsafe_allow_html=True)
+    # T恤图片容器 ——flex居中，不再左对齐
+    st.markdown(
+        '<div style="display:flex; justify-content:center; align-items:center; width:100%; margin:0 auto;">',
+        unsafe_allow_html=True
+    )
     if pick:
         try:
-            # width写固定像素，删掉use_container_width=True！！
-            st.image(pick["img_path"], width=200)
+            st.image(pick["img_path"], width=220)
         except Exception as e:
             st.warning(f"图片缺失：{pick['img_path']}")
     else:
         st.warning("当前条件下暂无匹配款式")
     st.markdown('</div>', unsafe_allow_html=True)
-
 
     st.markdown(f"""
     <div style="text-align:center; max-width:520px; margin:0.4rem auto; padding:0 16px;">
@@ -218,3 +219,4 @@ elif st.session_state.page == "result":
             del st.session_state["final_gender"]
             init_session()
             st.rerun()
+
