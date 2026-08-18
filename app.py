@@ -185,7 +185,7 @@ elif st.session_state.page == "result":
     """, unsafe_allow_html=True)
 
     # T恤图片居中，最大高度压缩，避免一屏装不下
-    st.markdown('<div style="max-width:280px; margin:0 auto;">', unsafe_allow_html=True)
+    st.markdown('<div style="max-width:200px; margin:0 auto;">', unsafe_allow_html=True)
     if pick:
         try:
             st.image(pick["img_path"], use_container_width=True)
