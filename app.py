@@ -171,7 +171,7 @@ elif st.session_state.page == "quiz":
                 if st.session_state.current_q >= len(questions):
                     st.session_state.page = "result"
                 st.rerun()
-# ----------------------结果页 result----------------------
+# ----------------------结果页 result【消除顶部空白，紧凑一屏】----------------------
 elif st.session_state.page == "result":
     final_energy = calc_result()
     final_gender = st.session_state.final_gender
@@ -179,13 +179,13 @@ elif st.session_state.page == "result":
     info = energy_info[final_energy]
 
     st.markdown("""
-    <div style="text-align:center; max-width:600px; margin:1.2rem auto 0.8rem auto; padding:0 16px;">
-        <h1 style="font-size:1.8rem; font-weight:bold;">你的本命能力T</h1>
+    <div style="text-align:center; max-width:600px; margin:0.2rem auto 0.4rem auto; padding:0 16px;">
+        <h1 style="font-size:1.8rem; font-weight:bold; margin:0;">你的本命能力T</h1>
     </div>
     """, unsafe_allow_html=True)
 
-    # T恤图片居中，最大高度压缩，避免一屏装不下
-    st.markdown('<div style="max-width:200px; margin:0 auto;">', unsafe_allow_html=True)
+    # T恤图片容器
+    st.markdown('<div style="max-width:280px; margin:0 auto;">', unsafe_allow_html=True)
     if pick:
         try:
             st.image(pick["img_path"], use_container_width=True)
@@ -196,10 +196,10 @@ elif st.session_state.page == "result":
     st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown(f"""
-    <div style="text-align:center; max-width:520px; margin:0.8rem auto; padding:0 16px;">
+    <div style="text-align:center; max-width:520px; margin:0.4rem auto; padding:0 16px;">
         <p style="font-size:1.15rem; font-weight:600; margin:4px 0;">{info['title']}</p>
-        <p style="font-size:0.95rem; color:#444; line-height:1.5;">{info['desc']}</p>
-        <p style="font-size:1rem; margin-top:6px; color:#d64848;">✨ {info['slogan']}</p>
+        <p style="font-size:0.95rem; color:#444; line-height:1.4; margin:0;">{info['desc']}</p>
+        <p style="font-size:1rem;margin-top:4px;color:#d64848;">✨ {info['slogan']}</p>
     </div>
     """, unsafe_allow_html=True)
 
