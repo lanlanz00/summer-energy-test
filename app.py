@@ -185,7 +185,7 @@ elif st.session_state.page == "result":
 
     st.markdown("""
     <div style="text-align:center; max-width:600px; margin:0.2rem auto 0.4rem auto; padding:0 16px;">
-        <h1 style="font-size:1.8rem; font-weight:bold; margin:0;">你的本命能力T</h1>
+        <h1 style="font-size:1.8rem; font-weight:bold; margin:0;">你的本命能量T</h1>
     </div>
     """, unsafe_allow_html=True)
 
